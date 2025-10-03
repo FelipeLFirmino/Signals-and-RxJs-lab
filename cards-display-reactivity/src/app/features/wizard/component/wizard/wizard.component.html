@@ -1,0 +1,97 @@
+<main class="page-main">
+  <div class="container">
+    
+    <div class="content-box">
+      
+      <h1 class="title">Seleção de Dados Pessoais (Reativo)</h1>
+      <p class="count-info">
+        Itens Selecionados: 
+        <span class="count-value">{{ selectedDataElements().length }}</span>
+      </p>
+
+      <input 
+        type="text" 
+        placeholder="Buscar por Nome ou Categoria..."
+        [ngModel]="searchTerm()" 
+        (ngModelChange)="updateSearchTerm($event)"
+        class="search-input"
+      >
+
+      @if (selectedDataElements().length === 0) {
+        <div class="validation-message validation-error">
+          É necessário selecionar pelo menos um elemento de dado pessoal.
+        </div>
+      }
+      @if (selectedDataElements().length > 0) {
+        <div class="validation-message validation-success">
+          Passo Válido! Você pode avançar.
+        </div>
+      }
+
+      <div class="card-list">
+        @for (element of displayedDataElements(); track element.id) {
+          
+          @if (selectedIdsSet().has(element.id); as isSelected) {
+            <div 
+              class="card"
+              [class.card-selected]="isSelected"
+              (click)="toggleSelection(element)"
+            >
+              <div class="card-header">
+                <h3 class="card-title" [class.card-selected]="isSelected">
+                  {{ element.name }}
+                </h3>
+                <span 
+                  class="card-tag"
+                  [class.tag-selected]="isSelected"
+                >
+                  {{ element.category }}
+                </span>
+              </div>
+              <p class="card-description">{{ element.description }}</p>
+              <p class="card-status" 
+                [class.status-selected]="isSelected"
+              >
+                {{ isSelected ? 'SELECIONADO' : 'Clique para selecionar' }}
+              </p>
+            </div>
+          }@else{
+             <div 
+              class="card"
+              (click)="toggleSelection(element)"
+            >
+              <div class="card-header">
+                <h3 class="card-title">
+                  {{ element.name }}
+                </h3>
+                <span 
+                  class="card-tag"
+                >
+                  {{ element.category }}
+                </span>
+              </div>
+              <p class="card-description">{{ element.description }}</p>
+              <p class="card-status">
+                   Clique para selecionar
+              </p>
+            </div>
+          }
+        } @empty {
+          <p class="empty-message">Nenhum elemento encontrado.</p>
+        }
+      </div>
+
+      <div class="load-more-container">
+        @if (hasMoreItems()) {
+          <button
+            (click)="loadMoreItems()"
+            class="btn btn-primary"
+          >
+            Mostrar Mais ({{ filteredDataElements().length - displayedDataElements().length }} restantes)
+          </button>
+        }
+      </div>
+      
+    </div>
+  </div>
+</main>
