@@ -1,0 +1,40 @@
+<div class="orchestrator-container">
+    <p class="count-info">
+        Itens Selecionados:
+        <span class="count-value">{{ selectedDataList().length }}</span>
+    </p>
+
+    <app-searchbar [data]="allDataList()" [searchKeys]="searchKeys()"
+        (filteredDataOutput)="handleFilteredData($event)" />
+
+    @if (!stepIsValid()) {
+    <div class="validation-message validation-error">
+        É necessário selecionar pelo menos um elemento.
+    </div>
+    }
+    @if (stepIsValid()) {
+    <div class="validation-message validation-success">
+        Passo Válido!
+    </div>
+    }
+
+    <div class="card-list">
+        @for (element of displayedList(); track element.id) {
+
+        <app-card [data]="element" [isSelected]="selectedIdsSet().has(element.id)"
+            (cardClickedOutput)="toggleSelection(element)" />
+
+        } @empty {
+        <p class="empty-message">Nenhum item encontrado.</p>
+        }
+    </div>
+
+    <div class="load-more-container">
+        @if (hasMoreItems()) {
+        <button (click)="loadMoreItems()" class="btn btn-primary">
+            Mostrar Mais ({{ orderedList().length - displayedList().length }} restantes)
+        </button>
+        }
+    </div>
+
+</div>

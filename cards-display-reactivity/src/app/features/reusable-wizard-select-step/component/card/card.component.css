@@ -1,0 +1,76 @@
+.card {
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: #fff;
+}
+
+.card:hover:not(.card-selected) {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-selected {
+  background-color: #eaf5ff; /* Fundo azul claro para seleção */
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Anel de foco */
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
+
+.card-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+}
+
+.card-selected .card-title {
+  color: #0056b3;
+}
+
+.card-tag {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: 500;
+  background-color: #eee;
+  color: #666;
+  white-space: nowrap;
+}
+
+.tag-selected {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.card-description {
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.card-status {
+  font-size: 0.75em;
+  font-weight: 700;
+  margin: 0;
+  color: #aaa;
+}
+
+.status-selected {
+  color: #007bff;
+}
+
+.empty-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #777;
+  padding: 20px;
+}

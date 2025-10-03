@@ -1,0 +1,18 @@
+<div class="card" [class.card-selected]="isSelected()" (click)="cardClicked(data().id)">
+    <div class="card-header">
+        <h3 class="card-title" [class.card-selected]="isSelected()">
+            {{ data().name }}
+        </h3>
+        <span class="card-tag" [class.tag-selected]="isSelected()">
+            {{ data().category }}
+        </span>
+    </div>
+
+    <p class="card-description">
+        {{ data().description }}
+    </p>
+
+    <p class="card-status" [class.status-selected]="isSelected()">
+        {{ isSelected() ? 'SELECIONADO' : 'Clique para selecionar' }}
+    </p>
+</div>

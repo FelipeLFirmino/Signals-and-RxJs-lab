@@ -1,0 +1,8 @@
+
+      <input 
+        type="text" 
+        placeholder="Buscar por Nome ou Categoria..."
+        [ngModel]="searchTerm()" 
+        (ngModelChange)="updateSearchTerm($event)"
+        class="search-input"
+      >

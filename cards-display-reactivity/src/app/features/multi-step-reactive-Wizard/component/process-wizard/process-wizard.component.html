@@ -1,0 +1,14 @@
+<main class="page-main">
+  <div class="container">
+    <h1 class="title">Assistente de Processo: Seleção de Dados</h1>
+    <p class="count-info">Este passo é orquestrado pelo componente genérico.</p>
+
+    <app-reusable-wizard-select-step
+      [allDataList]="allDataElements()"
+      [selectedDataList]="selectedElementsList()"
+      [searchKeys]="searchKeys"
+      (selectedDataChange)="handleSelectionChange($event)"
+    />
+
+  </div>
+</main>
